@@ -3,8 +3,14 @@
 </head>
 
 <body>
+  <h2>Log-in</h2>
+  {{> loginButtons}}
+  <br>
   <h1>Leaderboard</h1>
   {{> leaderboard}}
+
+  <h1>Add a new player below!</h1>
+  {{> addPlayerForm}}
 </body>
 
 <template name="leaderboard">
@@ -12,5 +18,22 @@
     {{#each player}}
      <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
     {{/each}}
+    <br>
+    {{#if showSelectedPlayer}}
+      <li>Selected Player: {{showSelectedPlayer.name}}</li>
+      <br>
+    {{/if}}
+    <input type="button" class="increment" value="Give 5 Points">
+    <input type="button" class="decrement" value="Deduce 5 Points">
+    <input type="button" class="remove" value="Remove Player">
   </ul>
+</template>
+
+<template name="addPlayerForm">
+  {{#if currentUser}}
+    <form>
+      <input type="text" name="playerName">
+      <input type="submit" value="Add Player">
+   </form>
+  {{/if}}
 </template>
